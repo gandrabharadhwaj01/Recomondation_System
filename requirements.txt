@@ -1,2 +1,5 @@
-rapidfuzz,
-sklearn
+streamlit
+pandas
+numpy
+scikit-learn
+rapidfuzz

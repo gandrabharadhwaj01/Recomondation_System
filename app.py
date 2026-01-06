@@ -3,19 +3,28 @@ import pickle
 import numpy as np
 from rapidfuzz import process
 
-# LOADING THE  MODELS 
+# LOADING MODELS
+
 books = pickle.load(open("books.pkl", "rb"))
 isbn_index = pickle.load(open("isbn_index.pkl", "rb"))
-reduced_matrix = pickle.load(open("reduced_matrix.pkl", "rb"))
+
+#  LOADINF OF COMPRESSED SVD MATRIX
+svd_data = np.load("reduced_matrix.npz")
+reduced_matrix = svd_data["reduced_matrix"]
+
 svd_knn = pickle.load(open("svd_knn.pkl", "rb"))
 
-#  STREAMLIT UI 
+
+# STREAMLIT UI
+
 st.title("📚 Book Recommendation System (SVD-Based CF)")
 
 book_titles = books['Book-Title'].values
 selected_book = st.selectbox("Select a Book", book_titles)
 
-#  RECOMMEND FUNCTION 
+
+# RECOMMEND FUNCTION
+
 def recommend_svd_from_title(book_title, top_n=5):
 
     # Fuzzy match
@@ -44,7 +53,9 @@ def recommend_svd_from_title(book_title, top_n=5):
         ['Book-Title', 'Book-Author', 'Image-URL-M']
     ]
 
-#  BUTTON ACTION 
+
+# BUTTON ACTION
+
 if st.button("Recommend"):
     results = recommend_svd_from_title(selected_book)
 

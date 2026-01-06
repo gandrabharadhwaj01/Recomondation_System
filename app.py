@@ -5,7 +5,7 @@ from rapidfuzz import process
 
 # LOADING MODELS
 
-books = pickle.load(open("books.pkl", "rb"))
+#books = pickle.load(open("books.pkl", "rb"))
 isbn_index = pickle.load(open("isbn_index.pkl", "rb"))
 
 #  LOADINF OF COMPRESSED SVD MATRIX
